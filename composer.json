@@ -1,5 +1,5 @@
 {
-    "name": "loyaltycorp/schedule-bundle",
+    "name": "natepage/schedule-bundle",
     "description": "Implement the Command Scheduling logic of Laravel in a Symfony app",
     "type": "symfony-bundle",
     "license": "MIT",
