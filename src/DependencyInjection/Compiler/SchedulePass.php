@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace LoyaltyCorp\Schedule\ScheduleBundle\DependencyInjection\Compiler;
 
 use LoyaltyCorp\Schedule\ScheduleBundle\Command\ScheduleRunCommand;
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

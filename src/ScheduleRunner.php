@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle;
+namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class ScheduleRunner implements ScheduleRunnerInterface
@@ -15,7 +15,7 @@ final class ScheduleRunner implements ScheduleRunnerInterface
     /**
      * Run given schedule and display to given output.
      *
-     * @param \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface $schedule
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface $schedule
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void

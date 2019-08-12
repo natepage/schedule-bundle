@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle\DependencyInjection;
 
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 

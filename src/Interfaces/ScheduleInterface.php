@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle\Interfaces;
+namespace LoyaltyCorp\Schedule\ScheduleBundle\Interfaces;
 
 use Symfony\Component\Console\Application;
 
@@ -13,7 +13,7 @@ interface ScheduleInterface
      * @param string $command
      * @param null|mixed[] $parameters
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function command(string $command, ?array $parameters = null): EventInterface;
 
@@ -27,7 +27,7 @@ interface ScheduleInterface
     /**
      * Get due events.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
      */
     public function getDueEvents(): array;
 }

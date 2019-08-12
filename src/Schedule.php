@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle;
+namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
 use Symfony\Component\Console\Application;
 
 final class Schedule implements ScheduleInterface
@@ -12,7 +12,7 @@ final class Schedule implements ScheduleInterface
     /** @var \Symfony\Component\Console\Application */
     private $app;
 
-    /** @var \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface[] */
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[] */
     private $events = [];
 
     /**
@@ -32,7 +32,7 @@ final class Schedule implements ScheduleInterface
      * @param string $command
      * @param null|mixed[] $parameters
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function command(string $command, ?array $parameters = null): EventInterface
     {
@@ -54,7 +54,7 @@ final class Schedule implements ScheduleInterface
     /**
      * Get due events.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
      */
     public function getDueEvents(): array
     {

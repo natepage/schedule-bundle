@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle\Interfaces;
+namespace LoyaltyCorp\Schedule\ScheduleBundle\Interfaces;
 
 use Symfony\Component\Console\Application;
 
@@ -21,7 +21,7 @@ interface EventInterface
      *
      * @param callable $func
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function before(callable $func): self;
 
@@ -233,7 +233,7 @@ interface EventInterface
      *
      * @param callable $func
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function then(callable $func): self;
 

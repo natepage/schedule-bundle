@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle\Command;
 
-use Loyaltycorp\Schedule\ScheduleBundle\Schedule;
-use Loyaltycorp\Schedule\ScheduleBundle\ScheduleRunner;
+use LoyaltyCorp\Schedule\ScheduleBundle\Schedule;
+use LoyaltyCorp\Schedule\ScheduleBundle\ScheduleRunner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

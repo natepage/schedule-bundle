@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle;
+namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
 use Exception;
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,7 +45,7 @@ final class Event extends AbstractEvent
      *
      * @param callable $func
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function before(callable $func): EventInterface
     {
@@ -107,7 +107,7 @@ final class Event extends AbstractEvent
      *
      * @param callable $func
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function then(callable $func): EventInterface
     {

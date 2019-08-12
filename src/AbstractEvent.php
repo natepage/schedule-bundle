@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Loyaltycorp\Schedule\ScheduleBundle;
+namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
-use Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
 use Carbon\Carbon;
 use Cron\CronExpression;
 
@@ -26,7 +26,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param string $time
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function at(string $time): EventInterface
     {
@@ -39,7 +39,7 @@ abstract class AbstractEvent implements EventInterface
      * @param string $startTime
      * @param string $endTime
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function between(string $startTime, string $endTime): EventInterface
     {
@@ -51,7 +51,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param string $expression
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function cron(string $expression): EventInterface
     {
@@ -63,7 +63,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run daily.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function daily(): EventInterface
     {
@@ -77,7 +77,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param string $time
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function dailyAt(string $time): EventInterface
     {
@@ -93,7 +93,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param mixed[]|mixed $days
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function days($days): EventInterface
     {
@@ -105,7 +105,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run every fifteen minutes.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function everyFifteenMinutes(): EventInterface
     {
@@ -115,7 +115,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run every five minutes.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function everyFiveMinutes(): EventInterface
     {
@@ -125,7 +125,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run every minute.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function everyMinute(): EventInterface
     {
@@ -135,7 +135,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run every ten minutes.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function everyTenMinutes(): EventInterface
     {
@@ -145,7 +145,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run every thirty minutes.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function everyThirtyMinutes(): EventInterface
     {
@@ -177,7 +177,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Fridays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function fridays(): EventInterface
     {
@@ -187,7 +187,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run hourly.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function hourly(): EventInterface
     {
@@ -199,7 +199,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param int $offset
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function hourlyAt(int $offset): EventInterface
     {
@@ -209,7 +209,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Mondays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function mondays(): EventInterface
     {
@@ -219,7 +219,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run monthly.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function monthly(): EventInterface
     {
@@ -235,7 +235,7 @@ abstract class AbstractEvent implements EventInterface
      * @param null|int $day
      * @param null|string $time
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function monthlyOn(?int $day = null, ?string $time = null): EventInterface
     {
@@ -247,7 +247,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run quarterly.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function quarterly(): EventInterface
     {
@@ -261,7 +261,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Saturdays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function saturdays(): EventInterface
     {
@@ -273,7 +273,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param callable|bool $callback
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function skip($callback): EventInterface
     {
@@ -290,7 +290,7 @@ abstract class AbstractEvent implements EventInterface
      * @param int $position
      * @param int|string $value
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function spliceIntoPosition(int $position, $value): EventInterface
     {
@@ -304,7 +304,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Sundays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function sundays(): EventInterface
     {
@@ -314,7 +314,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Thursdays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function thursdays(): EventInterface
     {
@@ -326,7 +326,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param \DateTimeZone|string $timezone
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function timezone($timezone): EventInterface
     {
@@ -338,7 +338,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Tuesdays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function tuesdays(): EventInterface
     {
@@ -351,7 +351,7 @@ abstract class AbstractEvent implements EventInterface
      * @param null|int $first
      * @param null|int $second
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function twiceDaily(?int $first = null, ?int $second = null): EventInterface
     {
@@ -366,7 +366,7 @@ abstract class AbstractEvent implements EventInterface
      * @param null|int $first
      * @param null|int $second
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function twiceMonthly(?int $first = null, ?int $second = null): EventInterface
     {
@@ -382,7 +382,7 @@ abstract class AbstractEvent implements EventInterface
      * @param string $startTime
      * @param string $endTime
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function unlessBetween(string $startTime, string $endTime): EventInterface
     {
@@ -392,7 +392,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on Wednesdays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function wednesdays(): EventInterface
     {
@@ -402,7 +402,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on weekdays.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function weekdays(): EventInterface
     {
@@ -412,7 +412,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run only on weekends.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function weekends(): EventInterface
     {
@@ -422,7 +422,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run weekly.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function weekly(): EventInterface
     {
@@ -438,7 +438,7 @@ abstract class AbstractEvent implements EventInterface
      * @param int $day
      * @param null|string $time
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function weeklyOn(int $day, ?string $time = null): EventInterface
     {
@@ -452,7 +452,7 @@ abstract class AbstractEvent implements EventInterface
      *
      * @param callable|bool $callback
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function when($callback): EventInterface
     {
@@ -466,7 +466,7 @@ abstract class AbstractEvent implements EventInterface
     /**
      * Schedule the event to run yearly.
      *
-     * @return \Loyaltycorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function yearly(): EventInterface
     {
