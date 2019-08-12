@@ -1,0 +1,19 @@
+{
+    "name": "loyaltycorp/schedule-bundle",
+    "description": "Implement the Command Scheduling logic of Laravel in a Symfony app",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": "^7.1",
+        "nesbot/carbon": "^2.22",
+        "dragonmantank/cron-expression": "^2.3"
+    },
+    "require-dev": {
+        "symfony/symfony": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "LoyaltyCorp\\Schedule\\ScheduleBundle\\": "src/"
+        }
+    }
+}
