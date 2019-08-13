@@ -42,7 +42,13 @@ final class ScheduleRunner implements ScheduleRunnerInterface
                 continue;
             }
 
-            $event->run($schedule->getApplication());
+            try {
+                $event->run($schedule->getApplication());
+
+                $lock->release();
+            } finally {
+                $lock->release();
+            }
 
             $this->ran = true;
         }
