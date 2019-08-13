@@ -31,6 +31,8 @@ final class ScheduleRunner implements ScheduleRunnerInterface
                 continue;
             }
 
+            $this->ran = true;
+
             $description = $event->getDescription();
             $lockFactory = $this->lockFactoryProvider->getFactory();
             $lock = $lockFactory->createLock($event->getLockResource(), $event->getMaxLockTime());
@@ -50,8 +52,6 @@ final class ScheduleRunner implements ScheduleRunnerInterface
             } finally {
                 $lock->release();
             }
-
-            $this->ran = true;
         }
 
         if ($this->ran === false) {
