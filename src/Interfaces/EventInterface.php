@@ -140,6 +140,13 @@ interface EventInterface
     public function getLockResource(): string;
 
     /**
+     * Get max lock time.
+     *
+     * @return float
+     */
+    public function getMaxLockTime(): float;
+
+    /**
      * Schedule the event to run hourly.
      *
      * @return self
@@ -217,6 +224,15 @@ interface EventInterface
      * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
      */
     public function setAllowOverlapping(?bool $allowOverlapping = null): self;
+
+    /**
+     * Set max lock time in seconds.
+     *
+     * @param float $seconds
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     */
+    public function setMaxLockTime(float $seconds): self;
 
     /**
      * Register a callback to further filter the schedule.

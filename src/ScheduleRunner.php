@@ -32,7 +32,7 @@ final class ScheduleRunner implements ScheduleRunnerInterface
             }
 
             $description = $event->getDescription();
-            $lock = $this->lockFactory->createLock($event->getLockResource());
+            $lock = $this->lockFactory->createLock($event->getLockResource(), $event->getMaxLockTime());
 
             $output->writeln(\sprintf('<info>Running scheduled command:</info> %s', $description));
 

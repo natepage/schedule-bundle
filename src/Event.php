@@ -24,6 +24,9 @@ final class Event extends AbstractEvent
     /** @var \Symfony\Component\Console\Input\InputInterface */
     private $input;
 
+    /** @var float */
+    private $maxLockTime = 60.0;
+
     /** @var null|mixed[] */
     private $params;
 
@@ -88,6 +91,16 @@ final class Event extends AbstractEvent
     }
 
     /**
+     * Get max lock time.
+     *
+     * @return float
+     */
+    public function getMaxLockTime(): float
+    {
+        return $this->maxLockTime;
+    }
+
+    /**
      * Check if event is due or not.
      *
      * @return bool
@@ -125,6 +138,20 @@ final class Event extends AbstractEvent
     public function setAllowOverlapping(?bool $allowOverlapping = null): EventInterface
     {
         $this->allowOverlapping = $allowOverlapping ?? true;
+
+        return $this;
+    }
+
+    /**
+     * Set max lock time in seconds.
+     *
+     * @param float $seconds
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     */
+    public function setMaxLockTime(float $seconds): EventInterface
+    {
+        $this->maxLockTime = $seconds;
 
         return $this;
     }
