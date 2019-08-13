@@ -5,6 +5,9 @@ services:
 
     LoyaltyCorp\Schedule\ScheduleBundle\Command\ScheduleRunCommand: ~
 
+    LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface:
+        class: LoyaltyCorp\Schedule\ScheduleBundle\LockFactoryProvider
+
     LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface:
         class: LoyaltyCorp\Schedule\ScheduleBundle\Schedule
 

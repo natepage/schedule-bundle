@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle\DependencyInjection\Compiler;
 
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -17,7 +18,9 @@ final class SchedulePass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         $definition = $container->findDefinition(ScheduleInterface::class);
+
         $definition->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
+        $definition->addMethodCall('setLockFactory', [new Reference(LockFactoryProviderInterface::class)]);
     }
 
     /**

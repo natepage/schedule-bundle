@@ -8,6 +8,13 @@ use Symfony\Component\Console\Application;
 interface EventInterface
 {
     /**
+     * Check if event allows multiple instances to overlap.
+     *
+     * @return bool
+     */
+    public function allowsOverlapping(): bool;
+
+    /**
      * Schedule the command at a given time.
      *
      * @param string $time
@@ -201,6 +208,15 @@ interface EventInterface
      * @return self
      */
     public function saturdays(): self;
+
+    /**
+     * Allow or not multiple instances of the same event to overlap.
+     *
+     * @param null|bool $allowOverlapping
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     */
+    public function setAllowOverlapping(?bool $allowOverlapping = null): self;
 
     /**
      * Register a callback to further filter the schedule.

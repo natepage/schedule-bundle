@@ -12,6 +12,9 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 final class Event extends AbstractEvent
 {
+    /** @var bool */
+    private $allowOverlapping = false;
+
     /** @var callable[] */
     private $before = [];
 
@@ -38,6 +41,16 @@ final class Event extends AbstractEvent
         $this->command = $command;
         $this->params = $params ?? [];
         $this->input = $this->buildInput();
+    }
+
+    /**
+     * Check if event allows multiple instances to overlap.
+     *
+     * @return bool
+     */
+    public function allowsOverlapping(): bool
+    {
+        return $this->allowOverlapping;
     }
 
     /**
@@ -100,6 +113,20 @@ final class Event extends AbstractEvent
         $app->run($this->input);
 
         $this->runCallbacks($app, $this->then);
+    }
+
+    /**
+     * Allow or not multiple instances of the same event to overlap.
+     *
+     * @param null|bool $allowOverlapping
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     */
+    public function setAllowOverlapping(?bool $allowOverlapping = null): EventInterface
+    {
+        $this->allowOverlapping = $allowOverlapping ?? true;
+
+        return $this;
     }
 
     /**
