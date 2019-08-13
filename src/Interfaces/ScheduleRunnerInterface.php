@@ -4,19 +4,9 @@ declare(strict_types=1);
 namespace LoyaltyCorp\Schedule\ScheduleBundle\Interfaces;
 
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Lock\Factory;
 
 interface ScheduleRunnerInterface
 {
-    /**
-     * Set lock factory.
-     *
-     * @param \Symfony\Component\Lock\Factory $factory
-     *
-     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface
-     */
-    public function setLockFactory(Factory $factory): self;
-
     /**
      * Run given schedule and display to given output.
      *
@@ -26,4 +16,13 @@ interface ScheduleRunnerInterface
      * @return void
      */
     public function run(ScheduleInterface $schedule, OutputInterface $output): void;
+
+    /**
+     * Set lock factory provider.
+     *
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface $provider
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface
+     */
+    public function setLockFactoryProvider(LockFactoryProviderInterface $provider): self;
 }

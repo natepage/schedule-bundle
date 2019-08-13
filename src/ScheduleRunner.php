@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Lock\Factory;
 
 final class ScheduleRunner implements ScheduleRunnerInterface
 {
-    /** @var \Symfony\Component\Lock\Factory */
-    private $lockFactory;
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface */
+    private $lockFactoryProvider;
 
     /** @var bool */
     private $ran = false;
@@ -32,7 +32,8 @@ final class ScheduleRunner implements ScheduleRunnerInterface
             }
 
             $description = $event->getDescription();
-            $lock = $this->lockFactory->createLock($event->getLockResource(), $event->getMaxLockTime());
+            $lockFactory = $this->lockFactoryProvider->getFactory();
+            $lock = $lockFactory->createLock($event->getLockResource(), $event->getMaxLockTime());
 
             $output->writeln(\sprintf('<info>Running scheduled command:</info> %s', $description));
 
@@ -59,15 +60,15 @@ final class ScheduleRunner implements ScheduleRunnerInterface
     }
 
     /**
-     * Set lock factory.
+     * Set lock factory provider.
      *
-     * @param \Symfony\Component\Lock\Factory $factory
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface $provider
      *
      * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface
      */
-    public function setLockFactory(Factory $factory): ScheduleRunnerInterface
+    public function setLockFactoryProvider(LockFactoryProviderInterface $provider): ScheduleRunnerInterface
     {
-        $this->lockFactory = $factory;
+        $this->lockFactoryProvider = $provider;
 
         return $this;
     }

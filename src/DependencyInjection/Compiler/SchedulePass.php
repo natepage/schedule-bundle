@@ -22,7 +22,7 @@ final class SchedulePass implements CompilerPassInterface
         $schedule->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
 
         $runner = $container->getDefinition(ScheduleRunnerInterface::class);
-        $runner->addMethodCall('setLockFactory', [new Reference(LockFactoryProviderInterface::class)]);
+        $runner->addMethodCall('setLockFactoryProvider', [new Reference(LockFactoryProviderInterface::class)]);
     }
 
     /**
