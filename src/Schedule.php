@@ -15,15 +15,25 @@ final class Schedule implements ScheduleInterface
     /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[] */
     private $events = [];
 
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] */
+    private $providers = [];
+
     /**
-     * Schedule constructor.
+     * Add schedule providers.
      *
-     * @param \Symfony\Component\Console\Application $app
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] $providers
+     *
+     * @return self
      */
-    public function __construct(Application $app)
+    public function addProviders(array $providers): ScheduleInterface
     {
-        $this->app = $app;
-        $this->app->setAutoExit(false);
+        foreach ($providers as $provider) {
+            $this->providers[] = $provider;
+
+            $provider->schedule($this);
+        }
+
+        return $this;
     }
 
     /**
@@ -46,7 +56,7 @@ final class Schedule implements ScheduleInterface
      *
      * @return \Symfony\Bundle\FrameworkBundle\Console\Application
      */
-    public function getApp(): Application
+    public function getApplication(): Application
     {
         return $this->app;
     }
@@ -61,5 +71,20 @@ final class Schedule implements ScheduleInterface
         return \array_filter($this->events, static function (EventInterface $event): bool {
             return $event->isDue();
         });
+    }
+
+    /**
+     * Set application.
+     *
+     * @param \Symfony\Component\Console\Application $app
+     *
+     * @return self
+     */
+    public function setApplication(Application $app): ScheduleInterface
+    {
+        $this->app = $app;
+        $this->app->setAutoExit(false);
+
+        return $this;
     }
 }

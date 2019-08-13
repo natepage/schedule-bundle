@@ -4,3 +4,9 @@ services:
         autoconfigure: true
 
     LoyaltyCorp\Schedule\ScheduleBundle\Command\ScheduleRunCommand: ~
+
+    LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface:
+        class: LoyaltyCorp\Schedule\ScheduleBundle\Schedule
+
+    LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface:
+        class: LoyaltyCorp\Schedule\ScheduleBundle\ScheduleRunner

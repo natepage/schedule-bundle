@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle\DependencyInjection\Compiler;
 
-use LoyaltyCorp\Schedule\ScheduleBundle\Command\ScheduleRunCommand;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,8 +16,8 @@ final class SchedulePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        $definition = $container->findDefinition(ScheduleRunCommand::class);
-        $definition->setArgument(0, $this->getProviderReferences($container));
+        $definition = $container->findDefinition(ScheduleInterface::class);
+        $definition->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
     }
 
     /**

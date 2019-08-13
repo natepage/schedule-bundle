@@ -8,6 +8,15 @@ use Symfony\Component\Console\Application;
 interface ScheduleInterface
 {
     /**
+     * Add schedule providers.
+     *
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] $providers
+     *
+     * @return self
+     */
+    public function addProviders(array $providers): self;
+
+    /**
      * Create event for given command and parameters.
      *
      * @param string $command
@@ -22,7 +31,7 @@ interface ScheduleInterface
      *
      * @return \Symfony\Component\Console\Application
      */
-    public function getApp(): Application;
+    public function getApplication(): Application;
 
     /**
      * Get due events.
@@ -30,4 +39,13 @@ interface ScheduleInterface
      * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
      */
     public function getDueEvents(): array;
+
+    /**
+     * Set application.
+     *
+     * @param \Symfony\Component\Console\Application $app
+     *
+     * @return self
+     */
+    public function setApplication(Application $app): self;
 }

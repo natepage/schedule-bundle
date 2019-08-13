@@ -29,7 +29,7 @@ final class ScheduleRunner implements ScheduleRunnerInterface
 
             $output->writeln(\sprintf('<info>Running scheduled command:</info> %s', $event->getDescription()));
 
-            $event->run($schedule->getApp());
+            $event->run($schedule->getApplication());
 
             $this->ran = true;
         }

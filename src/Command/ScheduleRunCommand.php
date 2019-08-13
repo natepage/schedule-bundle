@@ -3,28 +3,32 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle\Command;
 
-use LoyaltyCorp\Schedule\ScheduleBundle\Schedule;
-use LoyaltyCorp\Schedule\ScheduleBundle\ScheduleRunner;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class ScheduleRunCommand extends Command
 {
-    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] */
-    private $commandProviders;
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface */
+    private $schedule;
+
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface */
+    private $runner;
 
     /**
      * ScheduleRunCommand constructor.
      *
-     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] $commandProviders
-     * @param string|null $name
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface $runner
+     * @param \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface $schedule
      */
-    public function __construct(array $commandProviders, ?string $name = null)
+    public function __construct(ScheduleRunnerInterface $runner, ScheduleInterface $schedule)
     {
-        parent::__construct($name);
+        parent::__construct();
 
-        $this->commandProviders = $commandProviders;
+        $this->runner = $runner;
+        $this->schedule = $schedule;
     }
 
     /**
@@ -42,12 +46,8 @@ final class ScheduleRunCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $schedule = new Schedule($this->getApplication());
+        $this->schedule->setApplication($this->getApplication());
 
-        foreach ($this->commandProviders as $provider) {
-            $provider->schedule($schedule);
-        }
-
-        (new ScheduleRunner())->run($schedule, $output);
+        $this->runner->run($this->schedule, $output);
     }
 }
