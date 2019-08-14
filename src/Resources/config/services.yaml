@@ -10,7 +10,7 @@ services:
         tags:
             -
                 name: data_collector
-                template: ScheduleBundle::schedule_collector.html.twig
+                template: '@Schedule/Collector/schedule_collector.html.twig'
                 id: !php/const LoyaltyCorp\Schedule\ScheduleBundle\DataCollector\ScheduleDataCollector::NAME
 
     LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface:
