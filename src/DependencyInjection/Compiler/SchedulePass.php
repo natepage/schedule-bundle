@@ -26,7 +26,8 @@ final class SchedulePass implements CompilerPassInterface
         if ($container->getParameter('kernel.debug')) {
             $container
                 ->register(TraceableScheduleInterface::class, TraceableSchedule::class)
-                ->setDecoratedService(ScheduleInterface::class);
+                ->setDecoratedService(ScheduleInterface::class)
+                ->addArgument(new Reference(\sprintf('%s.inner', TraceableScheduleInterface::class)));
         }
 
         $runner = $container->getDefinition(ScheduleRunnerInterface::class);
