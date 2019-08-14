@@ -2,8 +2,16 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        public: false
 
     LoyaltyCorp\Schedule\ScheduleBundle\Command\ScheduleRunCommand: ~
+
+    LoyaltyCorp\Schedule\ScheduleBundle\DataCollector\ScheduleDataCollector:
+        tags:
+            -
+                name: data_collector
+                template: ScheduleBundle::schedule_collector.html.twig
+                id: !php/const LoyaltyCorp\Schedule\ScheduleBundle\DataCollector\ScheduleDataCollector::NAME
 
     LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface:
         class: LoyaltyCorp\Schedule\ScheduleBundle\LockFactoryProvider
