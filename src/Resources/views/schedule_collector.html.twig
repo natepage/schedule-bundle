@@ -1,0 +1,18 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <span class="sf-toolbar-value">Schedule</span>
+    {% endset %}
+
+    {% set text %}
+        {% for event in collector.data %}
+            <div class="sf-toolbar-info-piece">
+                <b>Description</b>
+                <span>{{ event.description }}</span>
+            </div>
+        {% endfor %}
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig') }}
+{% endblock %}

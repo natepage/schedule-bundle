@@ -7,6 +7,8 @@ use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\LockFactoryProviderInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleRunnerInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\TraceableScheduleInterface;
+use LoyaltyCorp\Schedule\ScheduleBundle\TraceableSchedule;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -20,6 +22,12 @@ final class SchedulePass implements CompilerPassInterface
     {
         $schedule = $container->findDefinition(ScheduleInterface::class);
         $schedule->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
+
+        if ($container->getParameter('kernel.debug')) {
+            $container
+                ->register(TraceableScheduleInterface::class, TraceableSchedule::class)
+                ->setDecoratedService(ScheduleInterface::class);
+        }
 
         $runner = $container->getDefinition(ScheduleRunnerInterface::class);
         $runner->addMethodCall('setLockFactoryProvider', [new Reference(LockFactoryProviderInterface::class)]);
