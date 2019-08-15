@@ -60,8 +60,12 @@ final class ScheduleDataCollector extends DataCollector
             foreach ($events as $event) {
                 /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface $event */
                 $this->data['events'][] = [
+                    'allowsOverlapping' => $event->allowsOverlapping(),
                     'description' => $event->getDescription(),
-                    'provider' => $provider
+                    'cronExpression' => $event->getCronExpression(),
+                    'maxLockTime' => $event->getMaxLockTime(),
+                    'lockResource' => $event->getLockResource(),
+                    'provider' => $this->data['providers'][$provider]
                 ];
             }
         }

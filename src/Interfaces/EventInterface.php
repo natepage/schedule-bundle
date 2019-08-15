@@ -126,6 +126,13 @@ interface EventInterface
     public function fridays(): self;
 
     /**
+     * Get cron expression.
+     *
+     * @return string
+     */
+    public function getCronExpression(): string;
+
+    /**
      * Get description for display.
      *
      * @return string

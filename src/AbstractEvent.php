@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace LoyaltyCorp\Schedule\ScheduleBundle;
 
-use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
 use Carbon\Carbon;
 use Cron\CronExpression;
+use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface;
 
 abstract class AbstractEvent implements EventInterface
 {
@@ -182,6 +182,16 @@ abstract class AbstractEvent implements EventInterface
     public function fridays(): EventInterface
     {
         return $this->days(5);
+    }
+
+    /**
+     * Get cron expression.
+     *
+     * @return string
+     */
+    public function getCronExpression(): string
+    {
+        return $this->expression;
     }
 
     /**

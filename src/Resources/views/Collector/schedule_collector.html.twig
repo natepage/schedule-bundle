@@ -37,9 +37,51 @@
         <div class="tab">
             <h3 class="tab-title">Events <span class="badge">{{ collector.events|length }}</span></h3>
             <div class="tab-content">
-                <div class="empty">
-                    <p>No events registered</p>
-                </div>
+                {% if collector.events|length == 0 %}
+                    <div class="empty">
+                        <p>No events registered</p>
+                    </div>
+                {% else %}
+                    <table>
+                        <thead>
+                        <tr>
+                            <th scope="col">Command</th>
+                            <th scope="col">Cron</th>
+                            <th scope="col">Overlap</th>
+                            <th scope="col">Lock Name</th>
+                            <th scope="col">Lock Time</th>
+                            <th scope="col">Provider</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in collector.events %}
+                            {%- set file = event.provider.file -%}
+                            {%- set link = file ? file|file_link(1) : false -%}
+                            {%- set icon = event.allowsOverlapping ? 'yes' : 'no' -%}
+
+                            <tr>
+                                <td>{{ event.description }}</td>
+                                <td>{{ event.cronExpression }}</td>
+                                <td>{{ include('@WebProfiler/Icon/' ~ icon ~ '.svg') }}</td>
+                                <td>{{ event.lockResource }}</td>
+                                <td>{{ event.maxLockTime }}</td>
+                                <td>
+                                    {% if link %}
+                                        <a href="{{ link }}" title="{{ file }}">{{ provider.class }}</a>
+                                        <div>
+                                            <a class="text-muted" href="{{ link }}" title="{{ file }}">
+                                                {{ file|file_relative|default(file) }}
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        {{ event.provider.class }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
             </div>
         </div>
         <div class="tab">
