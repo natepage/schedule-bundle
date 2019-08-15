@@ -50,6 +50,7 @@
                             <th scope="col">Overlap</th>
                             <th scope="col">Lock Name</th>
                             <th class="num-col" scope="col">Lock Time (sec)</th>
+                            <th scope="col">Timezone</th>
                             <th scope="col">Provider</th>
                         </tr>
                         </thead>
@@ -64,6 +65,7 @@
                                 <td>{{ event.allowsOverlapping ? 'yes' : 'no' }}</td>
                                 <td>{{ event.lockResource }}</td>
                                 <td class="font-normal num-col">{{ event.maxLockTime }}</td>
+                                <td>{{ event.timezone }}</td>
                                 <td>
                                     {% if link %}
                                         <a href="{{ link }}" title="{{ file }}">{{ event.provider.class }}</a>

@@ -65,7 +65,8 @@ final class ScheduleDataCollector extends DataCollector
                     'cronExpression' => $event->getCronExpression(),
                     'maxLockTime' => $event->getMaxLockTime(),
                     'lockResource' => $event->getLockResource(),
-                    'provider' => $this->data['providers'][$provider]
+                    'provider' => $this->data['providers'][$provider],
+                    'timezone' => $event->getTimezone()
                 ];
             }
         }

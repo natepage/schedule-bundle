@@ -195,6 +195,16 @@ abstract class AbstractEvent implements EventInterface
     }
 
     /**
+     * Get timezone.
+     *
+     * @return string
+     */
+    public function getTimezone(): string
+    {
+        return Carbon::now($this->timezone)->getTimezone()->getName();
+    }
+
+    /**
      * Schedule the event to run hourly.
      *
      * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
@@ -279,6 +289,20 @@ abstract class AbstractEvent implements EventInterface
     }
 
     /**
+     * Set the timezone the date should be evaluated on.
+     *
+     * @param \DateTimeZone|string $timezone
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
+     */
+    public function setTimezone($timezone): EventInterface
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    /**
      * Register a callback to further filter the schedule.
      *
      * @param callable|bool $callback
@@ -329,20 +353,6 @@ abstract class AbstractEvent implements EventInterface
     public function thursdays(): EventInterface
     {
         return $this->days(4);
-    }
-
-    /**
-     * Set the timezone the date should be evaluated on.
-     *
-     * @param \DateTimeZone|string $timezone
-     *
-     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface
-     */
-    public function timezone($timezone): EventInterface
-    {
-        $this->timezone = $timezone;
-
-        return $this;
     }
 
     /**

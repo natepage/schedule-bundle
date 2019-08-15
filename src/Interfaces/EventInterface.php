@@ -154,6 +154,13 @@ interface EventInterface
     public function getMaxLockTime(): float;
 
     /**
+     * Get timezone.
+     *
+     * @return string
+     */
+    public function getTimezone(): string;
+
+    /**
      * Schedule the event to run hourly.
      *
      * @return self
@@ -242,6 +249,15 @@ interface EventInterface
     public function setMaxLockTime(float $seconds): self;
 
     /**
+     * Set the timezone the date should be evaluated on.
+     *
+     * @param \DateTimeZone|string $timezone
+     *
+     * @return self
+     */
+    public function setTimezone($timezone): self;
+
+    /**
      * Register a callback to further filter the schedule.
      *
      * @param callable|bool $callback
@@ -282,15 +298,6 @@ interface EventInterface
      * @return self
      */
     public function thursdays(): self;
-
-    /**
-     * Set the timezone the date should be evaluated on.
-     *
-     * @param \DateTimeZone|string $timezone
-     *
-     * @return self
-     */
-    public function timezone($timezone): self;
 
     /**
      * Schedule the event to run only on Tuesdays.
