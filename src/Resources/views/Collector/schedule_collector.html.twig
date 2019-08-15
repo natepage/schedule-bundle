@@ -49,7 +49,7 @@
                             <th scope="col">Cron</th>
                             <th scope="col">Overlap</th>
                             <th scope="col">Lock Name</th>
-                            <th scope="col">Lock Time</th>
+                            <th class="num-col" scope="col">Lock Time (sec)</th>
                             <th scope="col">Provider</th>
                         </tr>
                         </thead>
@@ -57,14 +57,13 @@
                         {% for event in collector.events %}
                             {%- set file = event.provider.file -%}
                             {%- set link = file ? file|file_link(1) : false -%}
-                            {%- set icon = event.allowsOverlapping ? 'yes' : 'no' -%}
 
                             <tr>
                                 <td>{{ event.description }}</td>
                                 <td>{{ event.cronExpression }}</td>
-                                <td>{{ include('@WebProfiler/Icon/' ~ icon ~ '.svg') }}</td>
+                                <td>{{ event.allowsOverlapping ? 'yes' : 'no' }}</td>
                                 <td>{{ event.lockResource }}</td>
-                                <td>{{ event.maxLockTime }}</td>
+                                <td class="font-normal num-col">{{ event.maxLockTime }}</td>
                                 <td>
                                     {% if link %}
                                         <a href="{{ link }}" title="{{ file }}">{{ event.provider.class }}</a>
