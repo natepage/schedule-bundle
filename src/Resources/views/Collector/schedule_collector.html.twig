@@ -67,7 +67,7 @@
                                 <td>{{ event.maxLockTime }}</td>
                                 <td>
                                     {% if link %}
-                                        <a href="{{ link }}" title="{{ file }}">{{ provider.class }}</a>
+                                        <a href="{{ link }}" title="{{ file }}">{{ event.provider.class }}</a>
                                         <div>
                                             <a class="text-muted" href="{{ link }}" title="{{ file }}">
                                                 {{ file|file_relative|default(file) }}
