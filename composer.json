@@ -1,6 +1,6 @@
 {
     "name": "natepage/schedule-bundle",
-    "description": "Implement the Command Scheduling logic of Laravel in a Symfony app",
+    "description": "Provides the Command Scheduling logic of Laravel in a Symfony application",
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
