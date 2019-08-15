@@ -33,7 +33,7 @@ The `ScheduleInterface` passed to the `schedule` method offers all the features 
 
 use LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface;
 
-final class MyScheduleProvider implement ScheduleProviderInterface
+final class MyScheduleProvider implements ScheduleProviderInterface
 {
     /**
      * Schedule command on given schedule.
