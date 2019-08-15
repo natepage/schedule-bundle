@@ -47,13 +47,15 @@ final class ScheduleDataCollector extends DataCollector
         foreach ($schedule->getProviders() as $provider) {
             $class = \get_class($provider);
 
-            $this->data['providers'][] = [
+            $this->data['providers'][$class] = [
                 'class' => $class,
                 'file' => (new \ReflectionClass($class))->getFileName()
             ];
         }
 
         foreach ($schedule->getEvents() as $provider => $events) {
+            $this->data['providers'][$provider]['events_count'] = \count($events);
+
             foreach ($events as $event) {
                 /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface $event */
                 $this->data['events'][] = [

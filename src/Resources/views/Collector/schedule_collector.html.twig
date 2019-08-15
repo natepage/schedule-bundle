@@ -53,7 +53,8 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>Providers & Path</th>
+                            <th scope="col">Providers & Path</th>
+                            <th class="num-col" scope="col">Events Count</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,6 +75,7 @@
                                         {{ provider.class }}
                                     {% endif %}
                                 </td>
+                                <td class="font-normal num-col">{{ provider.events_count }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
