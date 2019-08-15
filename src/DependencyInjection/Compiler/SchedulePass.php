@@ -20,15 +20,7 @@ final class SchedulePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        $schedule = $container->findDefinition(ScheduleInterface::class);
-        $schedule->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
-
-        if ($container->getParameter('kernel.debug')) {
-            $container
-                ->register(TraceableScheduleInterface::class, TraceableSchedule::class)
-                ->setDecoratedService(ScheduleInterface::class)
-                ->addArgument(new Reference(\sprintf('%s.inner', TraceableScheduleInterface::class)));
-        }
+        $this->registerSchedule($container);
 
         $runner = $container->getDefinition(ScheduleRunnerInterface::class);
         $runner->addMethodCall('setLockFactoryProvider', [new Reference(LockFactoryProviderInterface::class)]);
@@ -51,5 +43,28 @@ final class SchedulePass implements CompilerPassInterface
         }
 
         return $references;
+    }
+
+    /**
+     * Register schedule and traceable schedule if debug.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     *
+     * @return void
+     */
+    private function registerSchedule(ContainerBuilder $container): void
+    {
+        if ($container->getParameter('kernel.debug')) {
+            $container
+                ->register(TraceableScheduleInterface::class, TraceableSchedule::class)
+                ->setDecoratedService(ScheduleInterface::class)
+                ->addArgument(new Reference(\sprintf('%s.inner', TraceableScheduleInterface::class)))
+                ->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
+
+            return;
+        }
+
+        $schedule = $container->findDefinition(ScheduleInterface::class);
+        $schedule->addMethodCall('addProviders', [$this->getProviderReferences($container)]);
     }
 }

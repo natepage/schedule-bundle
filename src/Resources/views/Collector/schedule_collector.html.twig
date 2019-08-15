@@ -6,12 +6,10 @@
     {% endset %}
 
     {% set text %}
-        {% for event in collector.data %}
-            <div class="sf-toolbar-info-piece">
-                <b>Description</b>
-                <span>{{ event.description }}</span>
-            </div>
-        {% endfor %}
+        <div class="sf-toolbar-info-piece">
+            <b>Events</b>
+            <span>{{ collector.data|length }}</span>
+        </div>
     {% endset %}
 
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig') }}
