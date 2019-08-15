@@ -49,6 +49,7 @@ final class ScheduleDataCollector extends DataCollector
 
             $this->data['providers'][$class] = [
                 'class' => $class,
+                'events_count' => 0,
                 'file' => (new \ReflectionClass($class))->getFileName()
             ];
         }
