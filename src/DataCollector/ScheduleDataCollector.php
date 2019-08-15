@@ -29,6 +29,8 @@ final class ScheduleDataCollector extends DataCollector
 
     /**
      * {@inheritDoc}
+     *
+     * @throws \ReflectionException
      */
     public function collect(Request $request, Response $response, \Exception $exception = null): void
     {
@@ -43,7 +45,12 @@ final class ScheduleDataCollector extends DataCollector
         $this->data['events'] = [];
 
         foreach ($schedule->getProviders() as $provider) {
-            $this->data['providers'][] = \get_class($provider);
+            $class = \get_class($provider);
+
+            $this->data['providers'][] = [
+                'class' => $class,
+                'file' => (new \ReflectionClass($class))->getFileName()
+            ];
         }
 
         foreach ($schedule->getEvents() as $provider => $events) {
