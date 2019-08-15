@@ -2,15 +2,51 @@
 
 {% block toolbar %}
     {% set icon %}
-        <span class="sf-toolbar-value">Schedule</span>
+        {{ include('@Schedule/Icon/business-time-solid.svg') }}
+        <span class="sf-toolbar-value">{{ collector.events|length }}</span>
     {% endset %}
 
     {% set text %}
         <div class="sf-toolbar-info-piece">
             <b>Events</b>
-            <span>{{ collector.data|length }}</span>
+            <span class="sf-toolbar-status">{{ collector.events|length }}</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Providers</b>
+            <span class="sf-toolbar-status">{{ collector.providers|length }}</span>
         </div>
     {% endset %}
 
-    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig') }}
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': profiler_url }) }}
+{% endblock %}
+
+{% block menu %}
+    {# This left-hand menu appears when using the full-screen profiler. #}
+    <span class="label {{ 0 == collector.events|length and 0 == collector.providers|length ? 'disabled' }}">
+        <span class="icon">{{ include('@Schedule/Icon/business-time-solid.svg') }}</span>
+        <strong>Schedule</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Schedule</h2>
+
+    <div class="sf-tabs">
+        <div class="tab">
+            <h3 class="tab-title">Events <span class="badge">{{ collector.events|length }}</span></h3>
+            <div class="tab-content">
+                <div class="empty">
+                    <p>No events registered</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <h3 class="tab-title">Providers <span class="badge">{{ collector.providers|length }}</span></h3>
+            <div class="tab-content">
+                <div class="empty">
+                    <p>No providers registered</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -39,17 +39,32 @@ final class ScheduleDataCollector extends DataCollector
         /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\TraceableScheduleInterface $schedule */
         $schedule = $this->schedule;
 
-        $this->data = $schedule->getData();
+        $this->data['providers'] = [];
+        $this->data['events'] = [];
+
+        foreach ($schedule->getProviders() as $provider) {
+            $this->data['providers'][] = \get_class($provider);
+        }
+
+        foreach ($schedule->getEvents() as $provider => $events) {
+            foreach ($events as $event) {
+                /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface $event */
+                $this->data['events'][] = [
+                    'description' => $event->getDescription(),
+                    'provider' => $provider
+                ];
+            }
+        }
     }
 
     /**
-     * Get data.
+     * Get events.
      *
      * @return mixed[]
      */
-    public function getData(): array
+    public function getEvents(): array
     {
-        return $this->data;
+        return $this->data['events'];
     }
 
     /**
@@ -58,6 +73,16 @@ final class ScheduleDataCollector extends DataCollector
     public function getName(): string
     {
         return self::NAME;
+    }
+
+    /**
+     * Get providers.
+     *
+     * @return string[]
+     */
+    public function getProviders(): array
+    {
+        return $this->data['providers'];
     }
 
     /**

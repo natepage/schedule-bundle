@@ -13,11 +13,14 @@ final class TraceableSchedule implements TraceableScheduleInterface
     /** @var string */
     private $currentProvider;
 
-    /** @var mixed[] */
-    private $data = [];
-
     /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleInterface */
     private $decorated;
+
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[] */
+    private $events = [];
+
+    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] */
+    private $providers = [];
 
     /**
      * TraceableSchedule constructor.
@@ -40,6 +43,7 @@ final class TraceableSchedule implements TraceableScheduleInterface
     {
         foreach ($providers as $provider) {
             $this->currentProvider = \get_class($provider);
+            $this->providers[] = $provider;
 
             $provider->schedule($this);
         }
@@ -59,7 +63,11 @@ final class TraceableSchedule implements TraceableScheduleInterface
     {
         $event = $this->decorated->command($command, $parameters);
 
-        $this->data[$this->currentProvider][] = $event;
+        if (isset($this->events[$this->currentProvider]) === false) {
+            $this->events[$this->currentProvider] = [];
+        }
+
+        $this->events[$this->currentProvider][] = $event;
 
         return $event;
     }
@@ -75,28 +83,6 @@ final class TraceableSchedule implements TraceableScheduleInterface
     }
 
     /**
-     * Get profiler data.
-     *
-     * @return mixed[]
-     */
-    public function getData(): array
-    {
-        $data = [];
-
-        foreach ($this->data as $provider => $events) {
-            foreach ($events as $event) {
-                /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface $event */
-                $data[] = [
-                    'description' => $event->getDescription(),
-                    'provider' => $provider
-                ];
-            }
-        }
-
-        return $data;
-    }
-
-    /**
      * Get due events.
      *
      * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
@@ -104,6 +90,26 @@ final class TraceableSchedule implements TraceableScheduleInterface
     public function getDueEvents(): array
     {
         return $this->decorated->getDueEvents();
+    }
+
+    /**
+     * Get events indexed by their profiler class.
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
+     */
+    public function getEvents(): array
+    {
+        return $this->events;
+    }
+
+    /**
+     * Get providers.
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[]
+     */
+    public function getProviders(): array
+    {
+        return $this->providers;
     }
 
     /**

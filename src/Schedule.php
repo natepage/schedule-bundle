@@ -15,9 +15,6 @@ final class Schedule implements ScheduleInterface
     /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[] */
     private $events = [];
 
-    /** @var \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[] */
-    private $providers = [];
-
     /**
      * Add schedule providers.
      *
@@ -28,8 +25,6 @@ final class Schedule implements ScheduleInterface
     public function addProviders(array $providers): ScheduleInterface
     {
         foreach ($providers as $provider) {
-            $this->providers[] = $provider;
-
             $provider->schedule($this);
         }
 

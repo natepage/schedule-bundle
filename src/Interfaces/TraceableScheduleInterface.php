@@ -6,9 +6,16 @@ namespace LoyaltyCorp\Schedule\ScheduleBundle\Interfaces;
 interface TraceableScheduleInterface extends ScheduleInterface
 {
     /**
-     * Get profiler data.
+     * Get events indexed by their profiler class.
      *
-     * @return mixed[]
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\EventInterface[]
      */
-    public function getData(): array;
+    public function getEvents(): array;
+
+    /**
+     * Get providers.
+     *
+     * @return \LoyaltyCorp\Schedule\ScheduleBundle\Interfaces\ScheduleProviderInterface[]
+     */
+    public function getProviders(): array;
 }
